@@ -1,33 +1,158 @@
-.App {
+/* Intro Menu */
+
+.intro {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.intro .image-container {
+  position: absolute;
+  width: 800px;
+  height: 100px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.intro img {
+  opacity: 0;
+  animation-name: image-in;
+  animation-delay: 2s;
+  animation-duration: 0.01s;
+  animation-fill-mode: forwards;
+
+
+
+}
+
+.cover {
+  position: relative;
+}
+.image-container .block-1 {
+  height: 100%;
+  width: 50%;
+  left: 50px;
+  position: absolute;
+  background: #990101;
+  animation-name: scroll-1;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.image-container .block-2 {
+  height: 100%;
+  width: 0%;
+  left: 50px;
+  position: absolute;
+  background: #669acc;
+  animation-name: scroll-2;
+  animation-delay: 0.5s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.image-container .block-3 {
+  height: 100%;
+  width: 0%;
+  left: 50px;
+  position: absolute;
+  background: #3266cc;
+  animation-name: scroll-3;
+  animation-delay: 1s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+
+.image-container .block-4 {
+  height: 100%;
+  width: 0%;
+  left: 50px;
+  z-index: 111;
+  position: absolute;
+  background: #039;
+  animation-name: scroll-4;
+  animation-delay: 1.5s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes image-in {
+  0%  {opacity: 0}
+  100% {opacity: 1}
+}
+
+@keyframes scroll-1 {
+  0%  {left: 0px; width: 0px}
+  50% {left: 0px; width: 800px}
+  100%{left: 737px; width: 63px}
+}
+
+@keyframes scroll-2 {
+  0%  {left: 0px; width: 0px}
+  50% {left: 0px; width: 737px}
+  100%{left: 674px; width: 63px}
+}
+
+@keyframes scroll-3 {
+  0%  {left: 0px; width: 0px}
+  50% {left: 0px; width: 674px}
+  100%{left: 611px; width: 63px}
+}
+
+@keyframes scroll-4 {
+  0%  {left: 0px; width: 0px}
+  50% {left: 0px; width: 611px}
+  100%{left: 548px; width: 63px}
+}
+
+
+/* Application */
+
+
+
+
+.wrapper{
+  height: 100vh;
+  width: 100vw;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.nav-bar {
+  text-align: center;
+  background: #ffd4fb;
+  height: 50px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.content {
+  position: absolute;
+  width: 100%;
+  top: 50px;
+  bottom: 0
 }
 
-.App-link {
-  color: #61dafb;
+.left {
+  width: 35%;
+  height: 100%;
+  float: left
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.molecule-canvas {
+  background: #f3f3f3;
+  height: 70%
+}
+
+.button-panel {
+  background: #ffd4d1;
+  height: 30%
+}
+
+.right {
+  background: #d1f1ff;
+  height: 100%;
+  overflow: scroll;
+  overflow-x: hidden; 
 }
