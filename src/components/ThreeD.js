@@ -5,6 +5,7 @@ import OBJLoader from "three-obj-loader-es6-module"
 import OrbitControls from "three-orbitcontrols"
 
 var scene;
+var controls;
 
 class ThreeD extends React.Component {
   // constructor(props) {
@@ -30,7 +31,7 @@ class ThreeD extends React.Component {
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleWindowResize);
     window.cancelAnimationFrame(this.requestID);
-    this.controls.dispose();
+    controls.dispose();
   }
 
   componentDidUpdate(prevProps) {
@@ -52,11 +53,11 @@ class ThreeD extends React.Component {
     scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(30, width / height, 0.1, 1000);
     this.camera.position.z = 10;
-    let controls = new OrbitControls(this.camera, this.canvas)
+    controls = new OrbitControls(this.camera, this.canvas)
     controls.minDistance = 8
     controls.maxDistance = 12
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
-    this.renderer.setClearColor("#d4d4d4");
+    this.renderer.setClearColor("#A8F4FF");
     this.renderer.setSize(width, height);
     this.canvas.appendChild(this.renderer.domElement); // mount using React ref
     var lights = [];
@@ -70,7 +71,6 @@ class ThreeD extends React.Component {
     scene.add(lights[1]);
     scene.add(lights[2]);
   }
-
 
   addMolecule() {
     const path_mol = this.props.molecule
@@ -89,6 +89,7 @@ class ThreeD extends React.Component {
       })
     })
   }
+  
   addMo () {
     const path_mo = this.props.molecule + "_mo" + this.props.mo_no 
     const mtlLoader = new MTLLoader();
@@ -102,7 +103,7 @@ class ThreeD extends React.Component {
       objLoader.setMaterials(materials);
       objLoader.load(path_mo+".obj", function(object){
         object.name = "molecular-orbital"
-        object.scale.set(2,2,2);
+        object.scale.set(3,3,3);
         scene.add(object)
       })
     })

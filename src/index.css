@@ -2,10 +2,12 @@
     border: 0px;
     padding: 0px;
     margin: 0px;
-    font-family: sans-serif;
+    font-family: 'Libre Franklin', sans-serif;
 }
 
 #root {
-    height: 100vh;
-    width:  100vw;
+    height: 100%;
+    width:  100%;
+    background: rgb(241, 241, 241);
+    color: #DB1515;
 }

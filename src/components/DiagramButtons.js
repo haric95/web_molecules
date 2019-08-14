@@ -3,7 +3,7 @@ import React from "react"
 function DiagramButtons(props) {
     return(
         <form>
-            <label>
+            <label className="radio-container">
                 <input 
                     type="radio" 
                     name = "diagram"
@@ -14,7 +14,7 @@ function DiagramButtons(props) {
                 MO Diagram
             </label>
 
-            <label>
+            <label className="radio-container">
                 <input 
                     type="radio" 
                     name = "diagram"
@@ -25,7 +25,7 @@ function DiagramButtons(props) {
                 IR Spectrum
             </label>
 
-            <label>
+            <label className="radio-container">
                 <input 
                     type="radio" 
                     name = "diagram"

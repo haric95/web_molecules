@@ -4,7 +4,6 @@ function DiagramWindow(props) {
     const img_path = ("./assets/diagrams/" + props.molecule + "_" + props.diagram + ".png")
     return (
         <div>
-            <h1>{props.mo_no} </h1>
             <img src = {img_path} alt = {img_path}/>
             <form>
                 <label>
