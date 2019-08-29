@@ -84,26 +84,27 @@ class ThreeD extends React.Component {
       objLoader.setMaterials(materials);
       objLoader.load(path_mol+".obj", function(object){
         // const molecule = object;
-       object.scale.set(2,2,2);
+      //  object.scale.set(2,2,2);
         scene.add(object)
       })
     })
   }
   
   addMo () {
+    const mol = this.props.molecule
     const path_mo = this.props.molecule + "_mo" + this.props.mo_no 
     const mtlLoader = new MTLLoader();
     mtlLoader.setPath("./assets/mos/");
     mtlLoader.setMaterialOptions( { side: THREE.DoubleSide} );
-    mtlLoader.load(path_mo+".mtl", function(materials){
+    mtlLoader.load("mo.mtl", function(materials){
       materials.preload();
       console.log("loaded material");
       var objLoader = new OBJLoader();
-      objLoader.setPath('./assets/mos/')
+      objLoader.setPath('./assets/mos/' + mol + "/")
       objLoader.setMaterials(materials);
       objLoader.load(path_mo+".obj", function(object){
         object.name = "molecular-orbital"
-        object.scale.set(3,3,3);
+        // object.scale.set(2,2,2);
         scene.add(object)
       })
     })

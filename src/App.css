@@ -184,6 +184,7 @@
   padding-top: 75px;
   margin-left: 10px;
   color: rgb(228, 242, 247);
+  font-size: 22px;
 
 
 }
@@ -260,15 +261,33 @@
 }
 
 .nav-bar > * {
-  display: table-cell;
-  vertical-align: middle;
-  padding-top: 10px;
-  padding-left: 10px;
+  padding-top: 20px;
 }
 
-.nav-bar > * > * {
+.nav-bar .nb1{
   font-size: 100%;
 }
+
+.nav-bar .nb1 img{
+  height: 20px;
+  width: 20px;
+  background: #f1f1f1;
+  float: left;
+  margin-right: 5px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+.nav-bar > * > h2{
+  cursor: pointer;
+  transition: color 0.3s;
+  width: auto;
+}
+
+.nav-bar > * > h2:hover {
+  color: rgb(196, 15, 15)
+}
+
+
 
 .content {
   position: absolute;
@@ -317,8 +336,20 @@ label {
   overflow: scroll;
 }
 
-.diagram {
+/* .ir-spectrum-container {
   margin-top: 2.5%;
   margin-left: 2.5%;
   object-fit: contain;
+  background: #000000;
+} */
+
+.ir-spectrum-container {
+  max-width:100%;
+  height: auto
+}
+
+
+.info {
+  color: #0F5F7A;
+  font-size: 18px;
 }

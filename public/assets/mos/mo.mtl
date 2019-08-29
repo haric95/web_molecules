@@ -1,0 +1,28 @@
+# Wavefront OBJ MTL file export by VMD
+# 
+# Molecular graphics exported from VMD 1.9.3
+# http://www.ks.uiuc.edu/Research/vmd/
+# 
+
+# Note: The material applied to the objects can be altered by changing the values below
+# See http://paulbourke.net/dataformats/mtl/ for a guide on how the .mtl file works.
+
+
+newmtl vmd_mat_cindex_0
+Ka 0.00 0.00 0.00
+Kd 0.00 0.00 0.65
+Ks 0.00 0.00 0.2
+Tf 1 1 1
+d 1
+Ns 15.0
+illum 10
+
+newmtl vmd_mat_cindex_1
+Ka 0.00 0.00 0.00
+Kd 0.65 0.00 0.00
+Ks 0.20 0.00 0.00
+Tf 0.50 0.50 0.50
+d 1
+Ns 15.0
+illum 10
+

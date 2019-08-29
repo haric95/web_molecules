@@ -1,0 +1,23 @@
+# Wavefront OBJ MTL file export by VMD
+# 
+# Molecular graphics exported from VMD 1.9.3
+# http://www.ks.uiuc.edu/Research/vmd/
+# 
+newmtl vmd_mat_cindex_0
+Ka 0.00 0.00 0.00
+Kd 0.00 0.00 0.65
+Ks 0.00 0.00 0.50
+Tf 0.00 0.00 0.00
+d 1.0
+Ns 40.0
+illum_4
+
+newmtl vmd_mat_cindex_1
+Ka 0.00 0.00 0.00
+Kd 0.65 0.00 0.00
+Ks 0.50 0.00 0.00
+Tf 0.00 0.00 0.00
+d 1.0
+Ns 40.0
+illum_4
+

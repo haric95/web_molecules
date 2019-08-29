@@ -5,12 +5,11 @@ import Splitter from "./Splitter"
 function Menu (props) {
     return (
         <div>
-            
             <div className = "menu-container"> 
             <h1 class = "menu-header"> Select a Molecule </h1>
 
             <Splitter value = "Small Molecules"/>
-
+            
             <MenuWindow 
                 value = "h2o" 
                 mol="H2O"
@@ -46,22 +45,51 @@ function Menu (props) {
                 mol="B2H6"
                 exit={props.exitMenu}
             />
+
+            <Splitter value = "Solvents"/> 
+
             <MenuWindow 
-                value = "c2h2"
-                mol="CH2Cl2"
+                value = "acetone"
+                mol="Acetone"
                 exit={props.exitMenu}
             />
+            <MenuWindow 
+                value = "dmso"
+                mol="DMSO"
+                exit={props.exitMenu}
+            />
+            <MenuWindow 
+                value = "ethanol"
+                mol="Ethanol"
+                exit={props.exitMenu}
+            />
+            <MenuWindow 
+                value = "methanol"
+                mol="Methanol"
+                exit={props.exitMenu}
+            />
+            <MenuWindow 
+                value = "dimethoxymethane"
+                mol="Dimethoxy methane"
+                exit={props.exitMenu}
+            />
+
 
             <Splitter value = "Isomers"/>
 
             <MenuWindow 
-                value = "c-ch2cl2"
-                mol="cis-CH2Cl2"
+                value = "1,1-ch2cl2"
+                mol="1,1-CH2Cl2"
                 exit={props.exitMenu}
             />
             <MenuWindow 
-                value = "t-ch2cl2"
-                mol="trans-CH2Cl2"
+                value = "1,2-c-ch2cl2"
+                mol="1,2-cis-CH2Cl2"
+                exit={props.exitMenu}
+            />
+            <MenuWindow 
+                value = "1,2-t-ch2cl2"
+                mol="1,2-trans-CH2Cl2"
                 exit={props.exitMenu}
             />
 

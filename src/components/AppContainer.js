@@ -13,10 +13,12 @@ class AppContainer extends React.Component{
             intro: true,
             menu: true,
             molecule:'',
+            diagram: "ir",
             mo_no: '',
-            diagram: "mo",
+            tab: "diagrams"
         }
         this.handleChange = this.handleChange.bind(this)
+        this.handleChangeNavBar = this.handleChangeNavBar.bind(this)
         this.exitIntro = this.exitIntro.bind(this)
         this.exitMenu = this.exitMenu.bind(this)
         this.toMenu = this.toMenu.bind(this)
@@ -25,8 +27,13 @@ class AppContainer extends React.Component{
 
     handleChange(event) {
         const {name, value, type, checked} = event.target
-        console.log(name, value, type, checked)
+        console.log(event.target)
         type === "checkbox" ? this.setState({ [name]: checked }) : this.setState({ [name]: value })
+    }
+
+    handleChangeNavBar(event) {
+        const tab = event.currentTarget.attributes.getNamedItem("value").value
+        this.setState({tab: tab})
     }
 
     exitIntro(event) {
@@ -34,8 +41,6 @@ class AppContainer extends React.Component{
     }
 
     exitMenu(event) {
-        console.log("clicked")
-        console.log(event.currentTarget.attributes.getNamedItem("value").value)
         const mol = event.currentTarget.attributes.getNamedItem("value").value
         this.setState({menu: false, molecule: mol})
     }
@@ -62,7 +67,10 @@ class AppContainer extends React.Component{
             return (
                 <div className="wrapper">
                     <div className="nav-bar-container">
-                        <NavBar toMenu={this.toMenu}/>
+                        <NavBar 
+                            toMenu={this.toMenu} 
+                            handleChangeNavBar={this.handleChangeNavBar}
+                            molecule={this.state.molecule}/>
                     </div>
 
                     <div className="content">
@@ -86,6 +94,7 @@ class AppContainer extends React.Component{
                         <div className="right">
                             <div className = "diagram">
                                 <DiagramWindow 
+                                    tab={this.state.tab}
                                     diagram={this.state.diagram}
                                     mo_no =  {this.state.mo_no}
                                     molecule ={this.state.molecule} 
