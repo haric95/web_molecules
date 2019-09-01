@@ -1,39 +1,39 @@
 import React from "react"
 
-function DiagramButtons(props) {
-    return(
+function DiagramButtons (props) {
+    return (
         <form>
             <label className="radio-container">
-                <input 
-                    type="radio" 
-                    name = "diagram"
-                    value = "mo"
-                    onChange={props.handler} 
+                <input
+                    type="radio"
+                    name="diagram"
+                    value="mo"
+                    onChange={props.handler}
                     checked={props.diagram === "mo"}
                 />
                 MO Diagram
             </label>
 
             <label className="radio-container">
-                <input 
-                    type="radio" 
-                    name = "diagram"
-                    value = "ir"
-                    onChange={props.handler} 
-                    checked={props.diagram === "ir"} 
+                <input
+                    type="radio"
+                    name="diagram"
+                    value="ir"
+                    onChange={props.handler}
+                    checked={props.diagram === "ir"}
                 />
                 IR Spectrum
             </label>
 
             <label className="radio-container">
-                <input 
-                    type="radio" 
-                    name = "diagram"
-                    value = "uv"
-                    onChange={props.handler} 
+                <input
+                    type="radio"
+                    name="diagram"
+                    value="uv"
+                    onChange={props.handler}
                     checked={props.diagram === "uv"}
                 />
-                UV-Vis Spetrum
+                UV-Vis Spectrum
             </label>
         </form>
     )
