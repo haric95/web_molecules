@@ -1,3 +1,11 @@
+body {
+  height: 100vh;
+}
+
+form {
+  padding: 5px;
+}
+
 /* Intro & Menu */
 
 .intro {
@@ -60,7 +68,6 @@
   animation-fill-mode: forwards;
 }
 
-
 .image-container .block-4 {
   height: 100%;
   width: 0%;
@@ -75,32 +82,72 @@
 }
 
 @keyframes image-in {
-  0%  {opacity: 0}
-  100% {opacity: 1}
+  0% {
+    opacity: 0
+  }
+  100% {
+    opacity: 1
+  }
 }
 
 @keyframes scroll-1 {
-  0%  {left: 0px; width: 0px}
-  50% {left: 0px; width: 800px}
-  100%{left: 737px; width: 63px}
+  0% {
+    left: 0px;
+    width: 0px
+  }
+  50% {
+    left: 0px;
+    width: 800px
+  }
+  100% {
+    left: 737px;
+    width: 63px
+  }
 }
 
 @keyframes scroll-2 {
-  0%  {left: 0px; width: 0px}
-  50% {left: 0px; width: 737px}
-  100%{left: 674px; width: 63px}
+  0% {
+    left: 0px;
+    width: 0px
+  }
+  50% {
+    left: 0px;
+    width: 737px
+  }
+  100% {
+    left: 674px;
+    width: 63px
+  }
 }
 
 @keyframes scroll-3 {
-  0%  {left: 0px; width: 0px}
-  50% {left: 0px; width: 674px}
-  100%{left: 611px; width: 63px}
+  0% {
+    left: 0px;
+    width: 0px
+  }
+  50% {
+    left: 0px;
+    width: 674px
+  }
+  100% {
+    left: 611px;
+    width: 63px
+  }
 }
 
 @keyframes scroll-4 {
-  0%  {left: 0px; width: 0px}
-  50% {left: 0px; width: 611px}
-  100%{left: 548px; width: 63px}
+  0% {
+    left: 0px;
+    width: 0px
+  }
+  50% {
+    left: 0px;
+    width: 611px
+  }
+  100% {
+    left: 548px;
+    width: 63px
+  }
 }
 
 .splitter {
@@ -112,13 +159,13 @@
   border-width: 1.5px;
   border-color: rgb(10, 47, 59);
 }
+
 .menu-container {
   position: absolute;
   margin: auto;
   display: flex;
   align-items: center;
   padding-top: 10px;
-  /* justify-content: center; */
   flex-wrap: wrap;
   top: 0;
   left: 0;
@@ -133,14 +180,12 @@
   background: rgb(241, 241, 241);
 }
 
-
 .menu-header {
   display: inline;
   text-align: center;
-  height: 50px;
+  /* height: 50px; */
   color: #0F5F7A;
-  height: auto;
-
+  /* height: auto; */
 }
 
 .menu-window {
@@ -149,7 +194,6 @@
   margin-bottom: 5px;
   width: 350px;
   height: 175px;
-  /* text-align: center; */
 }
 
 .menu-window-content {
@@ -159,93 +203,77 @@
   margin: 0px;
   width: 100%;
   height: 100%;
-  /* background-color: #d1f1ff; */
-  /* background-image: url("./temp.png"); */
   cursor: pointer;
   overflow: hidden;
 }
 
 .menu-window-content-left {
   z-index: +1;
-  /* display: table; */
   width: 130px;
   justify-content: center;
   margin: 0px;
   height: 100%;
   background: #114B5F;
   margin: auto;
-
 }
 
-
-.menu-window-content-left > h2 {
-  /* display: table-cell; */
-  /* vertical-align: middle; */
+.menu-window-content-left>h2 {
   padding-top: 75px;
   margin-left: 10px;
   color: rgb(228, 242, 247);
   font-size: 22px;
-
-
 }
-
 
 .menu-window-content-right {
   width: 220px;
   height: 100%;
 }
 
-.menu-window-content-right > img {
+.menu-window-content-right>img {
   max-width: 100%;
   max-height: 100%;
   opacity: 0.8;
   transition: opacity 0.5s
 }
 
-.menu-window-content:hover > .menu-window-content-left {
+.menu-window-content:hover>.menu-window-content-left {
   animation-name: backgroundcolor;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 
-.menu-window-content:hover > .menu-window-content-right > img {
+.menu-window-content:hover>.menu-window-content-right>img {
   opacity: 1.0
 }
 
-
-
-/* .menu-window-content:hover{
-  animation-name: float;
-  animation-duration: 0.2s;
-  animation-fill-mode: forwards;
-} */
-
-/* @keyframes float {
-  0% {transform: translateY(0px)}
-  100% {transform:translateY(-5px)}
-} */
-
 @keyframes backgroundcolor {
-  0% {background: #114B5F}
-  100%{background: rgb(11, 49, 61)}
+  0% {
+    background: #114B5F
+  }
+  100% {
+    background: rgb(11, 49, 61)
+  }
 }
-
-
-
-
-
 
 /* Application */
 
-.wrapper{
-  width: 100%;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: initial;
   height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  max-height: calc(100vh - 10px);
+  max-width: calc(100vw - 80px);
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .nav-bar-container {
-  /* text-align: center; */
   margin-left: 3%;
   margin-right: 3%;
+  margin: 10px 0px
 }
 
 .nav-bar {
@@ -260,94 +288,105 @@
   width: 98%;
 }
 
-.nav-bar > * {
-  padding-top: 20px;
+.nav-bar>* {
+  margin: auto;
 }
 
-.nav-bar .nb1{
-  font-size: 100%;
+.nav-bar .nb1 {
+  width: 100%
 }
 
-.nav-bar .nb1 img{
+.nav-bar .nb1 img {
   height: 20px;
   width: 20px;
   background: #f1f1f1;
   float: left;
-  margin-right: 5px;
+  margin-right: 15px;
   margin-top: 2px;
   cursor: pointer;
 }
-.nav-bar > * > h2{
+
+.nav-bar>*>h2 {
   cursor: pointer;
   transition: color 0.3s;
   width: auto;
 }
 
-.nav-bar > * > h2:hover {
+.nav-bar>*>h2:hover {
   color: rgb(196, 15, 15)
 }
 
-
+/* --- */
 
 .content {
-  position: absolute;
-  text-align: center;
   width: 100%;
-  height: calc(100% - 50px)
-}
-
-
-.left {
+  display: flex;
   height: 100%;
-  background: rgb(241, 241, 241);
-  width: 35%;
-  height: 100%;
-  float: left
-}
-
-label {
-  cursor: pointer;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0px 10px;
 }
 
 .molecule-canvas {
-  background: rgb(241, 241, 241);
-  margin-top: 5%;
-  margin-left: 10%;
   height: 60%;
   width: 90%;
   cursor: pointer;
 }
 
-.button-panel {
-  background: #ffd4d1;
-  width: 100%;
-  margin-top: 3%;
-  margin-left: 10%;
-  height: auto;
+.left {
+  flex: 0 1 35%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 60px;
 }
 
 .right {
-  float: right;
-  background:rgb(241, 241, 241);
-  width: 65%;
+  flex: 0 1 55%;
   height: 100%;
-  /* width: auto; */
-  object-fit: contain;
-  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-/* .ir-spectrum-container {
-  margin-top: 2.5%;
-  margin-left: 2.5%;
-  object-fit: contain;
-  background: #000000;
-} */
+/* --- */
 
-.ir-spectrum-container {
-  max-width:100%;
-  height: auto
+label {
+  cursor: pointer;
+  padding: 5px;
 }
 
+.button-panel {
+  background: #ffd4d1;
+  margin: 20px 10px;
+  height: auto;
+}
+
+.ir-spectrum-container img {
+  max-width: 100%;
+  min-width: 100%;
+  height: auto;
+}
+
+.mo-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mo-diagram img {
+  max-width: 60%;
+  height: auto;
+}
+
+.mo-diagram form {
+  padding-top: 30px;
+}
 
 .info {
   color: #0F5F7A;
