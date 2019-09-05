@@ -13,7 +13,7 @@ class AppContainer extends React.Component{
             intro: true,
             menu: true,
             molecule:'',
-            diagram: "ir",
+            diagram: "mo",
             mo_no: '',
             tab: "diagrams"
         }

@@ -1,13 +1,14 @@
 import React from "react"
+import mol_data from "./mol_data.js"
 
 function DiagramWindow (props) {
-    const img_path = ("./assets/diagrams/" + props.molecule + "_" + props.diagram + ".png")
+    const img_path = ("./assets/diagrams/" + props.diagram + "/" + props.molecule + "_" + props.diagram + ".png")
     if (props.tab === "diagrams" & props.diagram === "mo") {
         return (
             <div className="mo-diagram">
                 <img src={img_path} alt={img_path} />
                 <form>
-                    <label>
+                    {/* <label>
                         <input
                             type="radio"
                             name="mo_no"
@@ -16,7 +17,7 @@ function DiagramWindow (props) {
                             checked={props.mo_no === ""}
                         />
                         Remove MOs
-                </label>
+                    </label>
                     <label>
                         <input
                             type="radio"
@@ -26,7 +27,7 @@ function DiagramWindow (props) {
                             checked={props.mo_no === "1"}
                         />
                         MO 1
-                </label>
+                    </label>
                     <label>
                         <input
                             type="radio"
@@ -36,7 +37,7 @@ function DiagramWindow (props) {
                             checked={props.mo_no === "2"}
                         />
                         MO 2
-                </label>
+                    </label>
                     <label>
                         <input
                             type="radio"
@@ -45,7 +46,7 @@ function DiagramWindow (props) {
                             onChange={props.handler}
                             checked={props.mo_no === "3"} />
                         MO 3
-                </label>
+                    </label>
                     <label>
                         <input
                             type="radio"
@@ -54,7 +55,7 @@ function DiagramWindow (props) {
                             onChange={props.handler}
                             checked={props.mo_no === "4"} />
                         MO 4
-                </label>
+                    </label>
                     <label>
                         <input
                             type="radio"
@@ -63,7 +64,19 @@ function DiagramWindow (props) {
                             onChange={props.handler}
                             checked={props.mo_no === "5"} />
                         MO 5
-                </label>
+                    </label> */}
+                    <select name="mo_no" onChange={props.handler}>
+                        <option value = "" defaultValue>Select an MO </option>
+                        <option value="1"> 1 </option>
+                        <option value="2"> 2 </option>
+                        <option value="3"> 3 </option>
+                        <option value="4"> 4 </option>
+                        <option value="5"> 5 </option>
+                        <option value="6"> 6 </option>
+                        <option value="7"> 7 </option>
+                        <option value="8"> 8 </option>
+
+                    </select>
                 </form>
 
             </div>

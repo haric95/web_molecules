@@ -13,7 +13,7 @@ function App() {
   //       <h1> This is the Nav Bar</h1>
   //     </div>
 
-  //     <div className="content">
+  //     <div className="content"> 
   //       <div className="left">
   //         <div className="molecule-canvas">
   //           <ThreeD />

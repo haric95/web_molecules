@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "file-system": "^2.2.2",
     "js-file-download": "^0.4.8",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

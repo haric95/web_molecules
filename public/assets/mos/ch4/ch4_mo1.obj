@@ -4,7 +4,7 @@
 # http://www.ks.uiuc.edu/Research/vmd/
 # 
 # Load Material Library paired with this scene:
-mtllib ch4_mo1.mtl
+mtllib ch4_mo0.mtl
 g vmd_mol0_rep0
 # MoleculeID: 0 ReprID: 0 Beginning Isosurface
 v -0.097209 -0.278124 -0.546911
