@@ -3,7 +3,16 @@ import mol_data from "./mol_data.js"
 
 function DiagramWindow (props) {
     const img_path = ("./assets/diagrams/" + props.diagram + "/" + props.molecule + "_" + props.diagram + ".png")
+    const num_mos = parseInt(mol_data[props.molecule]["number_mos"])
     if (props.tab === "diagrams" & props.diagram === "mo") {
+        function option_generator(num_mos) {
+            let options = []
+            options.push(<option value = {""}> Select an MO </option>)
+            for (let i = 1; i <= num_mos; i++) {
+                options.push(<option value = {i}> {i} </option>)
+            }
+            return (options)
+        }
         return (
             <div className="mo-diagram">
                 <img src={img_path} alt={img_path} />
@@ -66,16 +75,7 @@ function DiagramWindow (props) {
                         MO 5
                     </label> */}
                     <select name="mo_no" onChange={props.handler}>
-                        <option value = "" defaultValue>Select an MO </option>
-                        <option value="1"> 1 </option>
-                        <option value="2"> 2 </option>
-                        <option value="3"> 3 </option>
-                        <option value="4"> 4 </option>
-                        <option value="5"> 5 </option>
-                        <option value="6"> 6 </option>
-                        <option value="7"> 7 </option>
-                        <option value="8"> 8 </option>
-
+                        {option_generator(num_mos)}
                     </select>
                 </form>
 
@@ -97,7 +97,7 @@ function DiagramWindow (props) {
     } else if (props.tab === "info") {
         return (
             <div className="info">
-                <p> This is some placeholder text about the molecule.</p>
+                <p> {mol_data[props.molecule]["info"]}</p>
             </div>
         )
     } else if (props.tab === "point_group") {

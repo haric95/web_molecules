@@ -389,6 +389,7 @@ label {
 }
 
 .info {
+  width: 75%;
   color: #0F5F7A;
-  font-size: 18px;
+  font-size: 22px;
 }

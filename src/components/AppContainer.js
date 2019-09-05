@@ -46,7 +46,11 @@ class AppContainer extends React.Component{
     }
 
     toMenu() {
-        this.setState({intro: false, menu: true})
+        this.setState({
+            intro: false, 
+            menu: true,
+            diagram: "mo"
+        })
     }
 
 
