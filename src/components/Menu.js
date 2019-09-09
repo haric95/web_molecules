@@ -2,11 +2,19 @@ import React from "react"
 import MenuWindow from "./MenuWindow"
 import Splitter from "./Splitter"
 
+
+// Functional Component.
+// Only prop it receives is exitMenu, this links back to the exitMenu method in the AppContainer class.
+
+// Splitter used to create dividing line.
+// MenuWindow contains two additional attributes.
+// value is the string to which the molecule property in AppContainer component is changed to.
+// mol is the text which is displayed on screen.
 function Menu (props) {
     return (
         <div>
             <div className = "menu-container"> 
-            <h1 class = "menu-header"> Select a Molecule </h1>
+            <h1 className = "menu-header"> Select a Molecule </h1>
 
             <Splitter value = "Small Molecules"/>
             

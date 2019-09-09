@@ -55,30 +55,31 @@ class ThreeD extends React.Component {
     this.camera.position.z = 10;
     controls = new OrbitControls(this.camera, this.canvas)
     controls.minDistance = 8
-    controls.maxDistance = 12
+    controls.maxDistance = 20
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setClearColor("#A8F4FF");
     this.renderer.setSize(width, height);
     this.canvas.appendChild(this.renderer.domElement); // mount using React ref
     var lights = [];
-    lights[0] = new THREE.PointLight(0xffffff, 0.6, 0);
-    lights[1] = new THREE.PointLight(0xffffff, 0.6, 0);
-    lights[2] = new THREE.PointLight(0xffffff, 0.6, 0);
-    lights[0].position.set(0, 200, 0);
-    lights[1].position.set(100, 200, 100);
-    lights[2].position.set(-100, -200, -100);
+    lights[0] = new THREE.AmbientLight(0xffffff, 0.5 );
+    lights[1] = new THREE.PointLight(0xffffff, 0.5)
+    lights[1].position.set(0, 0, -100);
+    // lights[1] = new THREE.PointLight(0xffffff, 0.3, 0);
+    // lights[1].position.set(0, -400, 0);
+    // lights[2] = new THREE.AmbientLight(0xffffff, 0.7)
     scene.add(lights[0]);
     scene.add(lights[1]);
-    scene.add(lights[2]);
+
+
+
   }
 
   addMolecule() {
     const path_mol = this.props.molecule
     const mtlLoader = new MTLLoader();
     mtlLoader.setPath("./assets/molecules/");
-    mtlLoader.load(path_mol+".mtl", function(materials){
+    mtlLoader.load("molecule.mtl", function(materials){
       materials.preload();
-      console.log("loaded material");
       var objLoader = new OBJLoader();
       objLoader.setPath('./assets/molecules/')
       objLoader.setMaterials(materials);
@@ -98,7 +99,6 @@ class ThreeD extends React.Component {
     mtlLoader.setMaterialOptions( { side: THREE.DoubleSide} );
     mtlLoader.load("mo.mtl", function(materials){
       materials.preload();
-      console.log("loaded material");
       var objLoader = new OBJLoader();
       objLoader.setPath('./assets/mos/' + mol + "/")
       objLoader.setMaterials(materials);
@@ -127,26 +127,5 @@ class ThreeD extends React.Component {
     return <div ref={ref => (this.canvas = ref)} />;
   }
 }
-
-// class Container extends React.Component {
-//   state = { isMounted: true };
-
-//   render() {
-//     const { isMounted = true } = this.state;
-//     return (
-//       <>
-//         <button
-//           onClick={() =>
-//             this.setState(state => ({ isMounted: !state.isMounted }))
-//           }
-//         >
-//           {isMounted ? "Unmount" : "Mount"}
-//         </button>
-//         {isMounted && <ThreeD />}
-//         {isMounted && <div>Scroll to zoom, drag to rotate</div>}
-//       </>
-//     );
-//   }
-// }
 
 export default ThreeD

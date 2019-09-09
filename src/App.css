@@ -33,6 +33,8 @@ form {
   animation-fill-mode: forwards;
 }
 
+/* The landing page animation */
+
 .image-container .block-1 {
   height: 100%;
   width: 50%;
@@ -149,6 +151,8 @@ form {
     width: 63px
   }
 }
+
+/* End of landing page animation */
 
 .splitter {
   margin-top: 10px;
