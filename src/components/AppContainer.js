@@ -6,7 +6,7 @@ import DiagramWindow from "./DiagramWindow"
 import Intro from "./Intro"
 import Menu from "./Menu"
 
-//Class-based component with state, that tell the page what to render.
+// Class-based component with state, that tell the page what to render.
 
 
 class AppContainer extends React.Component{
@@ -20,8 +20,11 @@ class AppContainer extends React.Component{
             molecule:'',
             diagram: "mo",
             mo_no: '',
+            mo_annotated: false,
+            ir_peak: 230,
             tab: "diagrams"
         }
+        
         // Class methods must be bound for them to work properly.
         // If a new methods needs to be added, remember to bind it using the same syntax as below.
         this.handleChange = this.handleChange.bind(this)
@@ -75,7 +78,9 @@ class AppContainer extends React.Component{
             intro: false, 
             menu: true,
             diagram: "mo",
-            tab: "diagrams"
+            tab: "diagrams",
+            mo_annotated: false,
+            ir_peak: null
         })
     }
 
@@ -136,6 +141,7 @@ class AppContainer extends React.Component{
                                     diagram={this.state.diagram}
                                     mo_no =  {this.state.mo_no}
                                     molecule ={this.state.molecule} 
+                                    mo_annotated = {this.state.mo_annotated}
                                     handler={(event) => this.handleChange(event)}
                                 />
                             </div>

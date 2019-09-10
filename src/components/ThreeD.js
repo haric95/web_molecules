@@ -4,20 +4,16 @@ import MTLLoader from "three-mtl-loader";
 import OBJLoader from "three-obj-loader-es6-module"
 import OrbitControls from "three-orbitcontrols"
 
+// This component deals with the rendering of the 3d models of the molecules and MOs.
+// It is class-based although it doesn't have state so could potentially be rewritten as functional?
+// It is class-based at the moment because it relies on some lifecycle methods.
+
 var scene;
 var controls;
+var lights;
+var light_holder;
 
 class ThreeD extends React.Component {
-  // constructor(props) {
-  //   super(props)
-    // this.state = {
-    //   molecule: props.molecule,
-    //   mo_no: props.mo_no,
-    //   new_mo: props.new_mo,
-    //   load: true
-    // }
-  // }
-
 
   componentDidMount() {
     this.sceneSetup()
@@ -60,18 +56,17 @@ class ThreeD extends React.Component {
     this.renderer.setClearColor("#A8F4FF");
     this.renderer.setSize(width, height);
     this.canvas.appendChild(this.renderer.domElement); // mount using React ref
-    var lights = [];
-    lights[0] = new THREE.AmbientLight(0xffffff, 0.5 );
-    lights[1] = new THREE.PointLight(0xffffff, 0.5)
-    lights[1].position.set(0, 0, -100);
-    // lights[1] = new THREE.PointLight(0xffffff, 0.3, 0);
-    // lights[1].position.set(0, -400, 0);
-    // lights[2] = new THREE.AmbientLight(0xffffff, 0.7)
-    scene.add(lights[0]);
-    scene.add(lights[1]);
-
-
-
+    light_holder = new THREE.Group();
+    lights = [];
+    lights[0] = new THREE.AmbientLight(0xffffff, 0.45 );
+    lights[1] = new THREE.PointLight(0xffffff, 0.15);
+    lights[1].position.set(-2, 0, 10);
+    lights[2] = new THREE.PointLight(0xffffff, 0.10);
+    lights[2].position.set(10, 20, 10)
+    light_holder.add(lights[0]);
+    light_holder.add(lights[1]);
+    light_holder.add(lights[2]);
+    scene.add(light_holder);
   }
 
   addMolecule() {
@@ -111,6 +106,7 @@ class ThreeD extends React.Component {
   }
 
   startAnimationLoop = () => {
+    light_holder.quaternion.copy(this.camera.quaternion);;
     this.renderer.render(scene, this.camera);
     this.requestID = window.requestAnimationFrame(this.startAnimationLoop);
   };
