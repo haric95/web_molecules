@@ -24,8 +24,6 @@ function NavBar (props) {
                     download >.fchk 
                 </a>
             </div>
-            {/* <button>Testing</button> */}
-            {/* <h2 onClick={props.toMenu}>Back to Menu</h2> */}
         </div>
     )
 }

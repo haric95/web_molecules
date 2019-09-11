@@ -84,7 +84,6 @@ class AppContainer extends React.Component{
         })
     }
 
-
     // This is where the rendering happens.
     // It checks the values in state to determine what child components should be rendered.
     // (Conditional Rendering)

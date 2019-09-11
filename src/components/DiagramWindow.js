@@ -45,7 +45,7 @@ function DiagramWindow (props) {
     } else if (props.tab === "diagrams" & props.diagram === "ir") {
         function option_generator(ir_peaks) {
             let options = []
-            options.push(<option value = {""}> IR Peaks </option>)
+            options.push(<option value = {null}> IR Peaks </option>)
             for (let i = 0; i < ir_peaks.length; i++) {
                 options.push(<option value = {ir_peaks[i]}> {ir_peaks[i]} </option>)
             }
