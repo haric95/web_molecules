@@ -75,9 +75,11 @@ function DiagramWindow (props) {
         )
 
     } else if (props.tab === "point_group") {
+        const point_group = mol_data[props.molecule]["point_group"]
+        const img_path = "./assets/character_tables/" + point_group + ".png"
         return (
-            <div>
-                <h2> Point Group Information. </h2>
+            <div className = "spectrum-container">
+                <img alt = "" src = {img_path}/>
             </div>
         )
     }
