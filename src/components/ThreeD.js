@@ -3,16 +3,20 @@ import * as THREE from "three"
 import MTLLoader from "three-mtl-loader";
 import OBJLoader from "three-obj-loader-es6-module"
 import OrbitControls from "three-orbitcontrols"
+import all_vibrations from "./vibration_data"
 
 
 // This component deals with the rendering of the 3d models of the molecules and MOs.
 // It is class-based although it doesn't have state so could potentially be rewritten as functional?
 // It is class-based at the moment because it relies on some lifecycle methods.
 
+//Declaring these variables outside of the class so they can be accessed within all of the class methods
+//If a variable is declared within a class method it is only available within that method.
 var scene;
 var controls;
 var lights;
 var light_holder;
+var molecule_vibrations;
 
 class ThreeD extends React.Component {
   //this method runs when the ThreeD component is initially mounted to the page
@@ -51,6 +55,7 @@ class ThreeD extends React.Component {
     else if (this.props.diagram === "ir") {
       scene.remove(molecule)
       scene.remove(mo)
+      molecule_vibrations = 
       this.addVibrationMolecule()
     }
     // if (this.props.mo_no !== prevProps.mo_no) {
@@ -124,6 +129,9 @@ class ThreeD extends React.Component {
   }
 
   addVibrationMolecule () {
+    var spheres = []
+    var materials = []
+    for (var i = 0; i<)
     var geometry = new THREE.SphereGeometry( 1, 20, 20 );
     var material = new THREE.MeshLambertMaterial( {color: 0xffffff} );
     var sphere = new THREE.Mesh( geometry, material );
