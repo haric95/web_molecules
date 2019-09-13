@@ -7,7 +7,7 @@ import React from "react"
 
 function Intro(props) {
     return(
-        <div onClick={props.exitIntro}className = "intro">
+        <div onClick={props.exit_Intro}className = "intro">
             <div className= "image-container">
                 <div className="block-4"></div>
                 <div className="block-3"></div>

@@ -15,13 +15,13 @@ class AppContainer extends React.Component{
         super();
         // To deactivate intro, just set the default state of intro to false below.
         this.state = {
-            intro: true,
+            intro: false,
             menu: true,
             molecule:'',
             diagram: "mo",
             mo_no: '',
             mo_annotated: false,
-            ir_peak: 230,
+            ir_peak: null,
             tab: "diagrams"
         }
         
@@ -121,6 +121,7 @@ class AppContainer extends React.Component{
                                 <ThreeD 
                                 molecule = {this.state.molecule} 
                                 mo_no = {this.state.mo_no} 
+                                diagram = {this.state.diagram}
                                 />
                             </div>
 

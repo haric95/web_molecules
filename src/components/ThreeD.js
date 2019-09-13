@@ -4,6 +4,7 @@ import MTLLoader from "three-mtl-loader";
 import OBJLoader from "three-obj-loader-es6-module"
 import OrbitControls from "three-orbitcontrols"
 
+
 // This component deals with the rendering of the 3d models of the molecules and MOs.
 // It is class-based although it doesn't have state so could potentially be rewritten as functional?
 // It is class-based at the moment because it relies on some lifecycle methods.
@@ -14,7 +15,10 @@ var lights;
 var light_holder;
 
 class ThreeD extends React.Component {
-
+  //this method runs when the ThreeD component is initially mounted to the page
+  //ie. when AppContainer has state => intro: false and menu: false
+  //it simply calls two other class methods and then starts the animation loop
+  //the lasts line makes sure the aspect ratio stays correct when the window is resized
   componentDidMount() {
     this.sceneSetup()
     this.addMolecule()
@@ -23,18 +27,31 @@ class ThreeD extends React.Component {
     // this.setState({load: false})
   }
 
-  
+  //This removes the event listener and cancels the animation loop when the ThreeD component is unmounted
+  //Removing event listener keeps things tidy
+  //Cancelling animation loop means less CPU usage when user is on another tab etc.
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleWindowResize);
     window.cancelAnimationFrame(this.requestID);
     controls.dispose();
   }
 
+  //This method runs when one of the props is changed.
+  //The props are all coming from state of AppContainer, so if another component triggers change in state of AppContainer
+  //then this method will run in this component.
   componentDidUpdate(prevProps) {
     const mo = scene.getObjectByName("molecular-orbital")
+    const molecule = scene.getObjectByName("molecule")
+    //This block is run if the MO number is changed in the drop-down menu
     if (typeof mo !== undefined && this.props.mo_no !== prevProps.mo_no) {
       scene.remove(mo)
       this.addMo()
+    }
+    //This code is run if the diagram to show is changed to IR.
+    else if (this.props.diagram === "ir") {
+      scene.remove(molecule)
+      scene.remove(mo)
+      this.addVibrationMolecule()
     }
     // if (this.props.mo_no !== prevProps.mo_no) {
     //   this.addMo()
@@ -79,6 +96,7 @@ class ThreeD extends React.Component {
       objLoader.setPath('./assets/molecules/')
       objLoader.setMaterials(materials);
       objLoader.load(path_mol+".obj", function(object){
+        object.name = "molecule"
         // const molecule = object;
       //  object.scale.set(2,2,2);
         scene.add(object)
@@ -105,8 +123,16 @@ class ThreeD extends React.Component {
     })
   }
 
+  addVibrationMolecule () {
+    var geometry = new THREE.SphereGeometry( 1, 20, 20 );
+    var material = new THREE.MeshLambertMaterial( {color: 0xffffff} );
+    var sphere = new THREE.Mesh( geometry, material );
+    sphere.position.set(0,0,0)
+    scene.add(sphere);
+  }
+
   startAnimationLoop = () => {
-    light_holder.quaternion.copy(this.camera.quaternion);;
+    light_holder.quaternion.copy(this.camera.quaternion);
     this.renderer.render(scene, this.camera);
     this.requestID = window.requestAnimationFrame(this.startAnimationLoop);
   };

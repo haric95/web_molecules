@@ -16,6 +16,5 @@ export default {
         number_mos: 6,
         ir_peaks: ["Not_available"],
         point_group: "td"
-
     }
 };
