@@ -55,7 +55,7 @@ class ThreeD extends React.Component {
     else if (this.props.diagram === "ir") {
       scene.remove(molecule)
       scene.remove(mo)
-      molecule_vibrations = 
+      molecule_vibrations = all_vibrations[this.props.molecule]
       this.addVibrationMolecule()
     }
     // if (this.props.mo_no !== prevProps.mo_no) {
@@ -91,6 +91,7 @@ class ThreeD extends React.Component {
     scene.add(light_holder);
   }
 
+  //This adds a molecule .obj file from the public folder
   addMolecule() {
     const path_mol = this.props.molecule
     const mtlLoader = new MTLLoader();
@@ -102,13 +103,11 @@ class ThreeD extends React.Component {
       objLoader.setMaterials(materials);
       objLoader.load(path_mol+".obj", function(object){
         object.name = "molecule"
-        // const molecule = object;
-      //  object.scale.set(2,2,2);
         scene.add(object)
       })
     })
   }
-  
+    //This adds a mo .obj file from the public folder
   addMo () {
     const mol = this.props.molecule
     const path_mo = this.props.molecule + "_mo" + this.props.mo_no 
@@ -128,15 +127,26 @@ class ThreeD extends React.Component {
     })
   }
 
+  //This generates the molecule object that can be animated to show vibrations
   addVibrationMolecule () {
-    var spheres = []
-    var materials = []
-    for (var i = 0; i<)
-    var geometry = new THREE.SphereGeometry( 1, 20, 20 );
-    var material = new THREE.MeshLambertMaterial( {color: 0xffffff} );
-    var sphere = new THREE.Mesh( geometry, material );
-    sphere.position.set(0,0,0)
-    scene.add(sphere);
+    var atom_geometry;
+    this.camera.position.set(0, 12, 0)
+    var atoms = new THREE.Group()
+    for (var i = 0; i < molecule_vibrations["num_atoms"]; i++) {
+      if (molecule_vibrations[i]["atomic_number"] === 1) {
+        atom_geometry = new THREE.SphereGeometry(0.6, 20, 20)
+      } else {
+        atom_geometry = new THREE.SphereGeometry(0.8, 20, 20)
+      } 
+      var atom_material = new THREE.MeshLambertMaterial( {color: 0xffffff} )
+      var atom = new THREE.Mesh(atom_geometry, atom_material)
+      // beacuse am forced to use orbitcontrols (as trackball controls don't work at the moment)
+      // and orbit controls don't allow complete free rotation, I have swapped the x and z coordinates
+      atom.position.set(molecule_vibrations[i]["x"], molecule_vibrations[i]["y"], molecule_vibrations[i]["z"])
+      atoms.add(atom)
+    }
+    atoms.up.set(0.0, 0.0, 1.0)
+    scene.add(atoms)
   }
 
   startAnimationLoop = () => {

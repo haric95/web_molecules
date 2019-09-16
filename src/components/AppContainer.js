@@ -2,7 +2,7 @@ import React from "react"
 import ThreeD from "./ThreeD"
 import DiagramButtons from "./DiagramButtons"
 import NavBar from "./NavBar"
-import DiagramWindow from "./DiagramWindow"
+import RightWindow from "./RightWindow"
 import Intro from "./Intro"
 import Menu from "./Menu"
 
@@ -15,11 +15,11 @@ class AppContainer extends React.Component{
         super();
         // To deactivate intro, just set the default state of intro to false below.
         this.state = {
-            intro: false,
+            intro: true,
             menu: true,
-            molecule:'',
+            molecule:null,
             diagram: "mo",
-            mo_no: '',
+            mo_no: null,
             mo_annotated: false,
             ir_peak: null,
             tab: "diagrams"
@@ -46,7 +46,8 @@ class AppContainer extends React.Component{
     // This could be fixed going forward.
 
     handleChange(event) {
-        const {name, value, type, checked} = event.target
+        console.log(event.target)
+        const {name, value, type, checked} = event.currentTarget
         type === "checkbox" ? this.setState({ [name]: checked }) : this.setState({ [name]: value })
     }
 
@@ -75,7 +76,6 @@ class AppContainer extends React.Component{
     // If you would like the tab and diagram to not change when the user goes back to menu then alter this function. 
     toMenu() {
         this.setState({
-            intro: false, 
             menu: true,
             diagram: "mo",
             tab: "diagrams",
@@ -136,7 +136,7 @@ class AppContainer extends React.Component{
 
                         <div className="right">
                             <div className = "diagram">
-                                <DiagramWindow 
+                                <RightWindow 
                                     tab={this.state.tab}
                                     diagram={this.state.diagram}
                                     mo_no =  {this.state.mo_no}
