@@ -46,9 +46,9 @@ function DiagramWindow (props) {
     } else if (props.tab === "diagrams" & props.diagram === "ir") {
         function option_generator(normal_modes) {
             let options = []
-            options.push(<option value = {"none"}> Normal Modes </option>)
-            for (let i = 0; i < normal_modes; i++) {
-                options.push(<option value = {i+1}> {i+1} </option>)
+            options.push(<option value = {"none"}> Normal Modes / cm-1</option>)
+            for (let i = 0; i < normal_modes.length; i++) {
+                options.push(<option value = {i+1}> {parseInt(i+1) + " (" + normal_modes[i] + ")"} </option>)
             }
             return (options)
         }
