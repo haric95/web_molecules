@@ -15,7 +15,6 @@ function MenuWindow (props) {
         return(char)
     }
     }
-
     // myfunc is used to map the molecule string to a new string that has sub tags around each number.
     // This will need fixing so that numbers which dictate isomerism / functionality positions don't have sub tags around them.
     var mol = props.mol

@@ -14,6 +14,18 @@ function DiagramButtons (props) {
                 MO Diagram
             </label>
 
+            
+            <label className="radio-container">
+                <input
+                    type="radio"
+                    name="diagram"
+                    value="uv"
+                    onChange={props.handler}
+                    checked={props.diagram === "uv"}
+                />
+                UV-Vis Spectrum
+            </label>
+
             <label className="radio-container">
                 <input
                     type="radio"
@@ -25,16 +37,6 @@ function DiagramButtons (props) {
                 IR Spectrum
             </label>
 
-            <label className="radio-container">
-                <input
-                    type="radio"
-                    name="diagram"
-                    value="uv"
-                    onChange={props.handler}
-                    checked={props.diagram === "uv"}
-                />
-                UV-Vis Spectrum
-            </label>
         </form>
     )
 }

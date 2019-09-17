@@ -5,6 +5,7 @@ import NavBar from "./NavBar"
 import RightWindow from "./RightWindow"
 import Intro from "./Intro"
 import Menu from "./Menu"
+import VibrationViewer from "./VibrationViewer"
 
 // Class-based component with state, that tell the page what to render.
 
@@ -21,7 +22,7 @@ class AppContainer extends React.Component{
             diagram: "mo",
             mo_no: null,
             mo_annotated: false,
-            ir_peak: null,
+            normal_mode: "none",
             tab: "diagrams"
         }
         
@@ -46,7 +47,7 @@ class AppContainer extends React.Component{
     // This could be fixed going forward.
 
     handleChange(event) {
-        console.log(event.target)
+        console.log(this.state.normal_mode)
         const {name, value, type, checked} = event.currentTarget
         type === "checkbox" ? this.setState({ [name]: checked }) : this.setState({ [name]: value })
     }
@@ -56,12 +57,13 @@ class AppContainer extends React.Component{
     // The event arguments is an object which comes from whichever component triggers the event.
     // It contains information about what was clicked etc.
     handleChangeNavBar(event) {
+        console.log(event.currentTarget)
         const tab = event.currentTarget.attributes.getNamedItem("value").value
         this.setState({tab: tab})
     }
 
     // Handles change of state when the intro page is clicked, taking user to the menu by changing AppContainer state.
-    exitIntro(event) {
+    exitIntro() {
         this.setState({intro: false, menu: true})
     }
 
@@ -80,7 +82,7 @@ class AppContainer extends React.Component{
             diagram: "mo",
             tab: "diagrams",
             mo_annotated: false,
-            ir_peak: null
+            normal_mode: "none"
         })
     }
 
@@ -106,6 +108,17 @@ class AppContainer extends React.Component{
         // Renders the main part of the website only if two conditions above are false.
         // ie neither the intro or menu are active.
         else {
+            var display_on_canvas;
+            if (this.state.diagram === "ir") {
+                display_on_canvas = <VibrationViewer 
+                                    mol = {this.state.molecule}
+                                    normal_mode = {this.state.normal_mode} />
+            } else {
+                display_on_canvas = <ThreeD 
+                                    molecule = {this.state.molecule} 
+                                    mo_no = {this.state.mo_no} 
+                                    diagram = {this.state.diagram}/>
+            }
             return (
                 <div className="wrapper">
                     <div className="nav-bar-container">
@@ -118,11 +131,7 @@ class AppContainer extends React.Component{
                     <div className="content">
                         <div className="left">
                             <div className="molecule-canvas">
-                                <ThreeD 
-                                molecule = {this.state.molecule} 
-                                mo_no = {this.state.mo_no} 
-                                diagram = {this.state.diagram}
-                                />
+                                {display_on_canvas}
                             </div>
 
                             <div className="button-panel">
@@ -149,6 +158,7 @@ class AppContainer extends React.Component{
                     </div>
                 </div>
             )
+        
         }
         
     }

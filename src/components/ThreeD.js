@@ -3,12 +3,18 @@ import * as THREE from "three"
 import MTLLoader from "three-mtl-loader";
 import OBJLoader from "three-obj-loader-es6-module"
 import OrbitControls from "three-orbitcontrols"
-import all_vibrations from "./vibration_data"
-
 
 // This component deals with the rendering of the 3d models of the molecules and MOs.
 // It is class-based although it doesn't have state so could potentially be rewritten as functional?
 // It is class-based at the moment because it relies on some lifecycle methods.
+
+
+//In this component, OrbitControls are used. These are camera controls which mean that the scene always has an "up" direction
+//See here for an example https://threejs.org/examples/#misc_controls_orbit
+//This isn't the case with molecules however, so it would be better to implement TrackballControls
+//https://threejs.org/examples/#misc_controls_trackball
+//However, I cannot get these to work with this component, so I'm using the principal rotation axis as the "up" direction
+//To hopefully make the controls make a bit of sense 
 
 //Declaring these variables outside of the class so they can be accessed within all of the class methods
 //If a variable is declared within a class method it is only available within that method.
@@ -16,7 +22,6 @@ var scene;
 var controls;
 var lights;
 var light_holder;
-var molecule_vibrations;
 
 class ThreeD extends React.Component {
   //this method runs when the ThreeD component is initially mounted to the page
@@ -45,22 +50,11 @@ class ThreeD extends React.Component {
   //then this method will run in this component.
   componentDidUpdate(prevProps) {
     const mo = scene.getObjectByName("molecular-orbital")
-    const molecule = scene.getObjectByName("molecule")
     //This block is run if the MO number is changed in the drop-down menu
     if (typeof mo !== undefined && this.props.mo_no !== prevProps.mo_no) {
       scene.remove(mo)
       this.addMo()
     }
-    //This code is run if the diagram to show is changed to IR.
-    else if (this.props.diagram === "ir") {
-      scene.remove(molecule)
-      scene.remove(mo)
-      molecule_vibrations = all_vibrations[this.props.molecule]
-      this.addVibrationMolecule()
-    }
-    // if (this.props.mo_no !== prevProps.mo_no) {
-    //   this.addMo()
-    // }
   }
 
 // This creates the 3D scene and ensures it renders to the right size and aspect ratio when page loads.
@@ -71,12 +65,13 @@ class ThreeD extends React.Component {
     scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(30, width / height, 0.1, 1000);
     this.camera.position.z = 10;
+    this.renderer = new THREE.WebGLRenderer({ antialias: true });
+    // Change the background color here
+    this.renderer.setClearColor("#dbf5fc");
+    this.renderer.setSize(width, height);
     controls = new OrbitControls(this.camera, this.canvas)
     controls.minDistance = 8
     controls.maxDistance = 20
-    this.renderer = new THREE.WebGLRenderer({ antialias: true });
-    this.renderer.setClearColor("#A8F4FF");
-    this.renderer.setSize(width, height);
     this.canvas.appendChild(this.renderer.domElement); // mount using React ref
     light_holder = new THREE.Group();
     lights = [];
@@ -125,28 +120,6 @@ class ThreeD extends React.Component {
         scene.add(object)
       })
     })
-  }
-
-  //This generates the molecule object that can be animated to show vibrations
-  addVibrationMolecule () {
-    var atom_geometry;
-    this.camera.position.set(0, 12, 0)
-    var atoms = new THREE.Group()
-    for (var i = 0; i < molecule_vibrations["num_atoms"]; i++) {
-      if (molecule_vibrations[i]["atomic_number"] === 1) {
-        atom_geometry = new THREE.SphereGeometry(0.6, 20, 20)
-      } else {
-        atom_geometry = new THREE.SphereGeometry(0.8, 20, 20)
-      } 
-      var atom_material = new THREE.MeshLambertMaterial( {color: 0xffffff} )
-      var atom = new THREE.Mesh(atom_geometry, atom_material)
-      // beacuse am forced to use orbitcontrols (as trackball controls don't work at the moment)
-      // and orbit controls don't allow complete free rotation, I have swapped the x and z coordinates
-      atom.position.set(molecule_vibrations[i]["x"], molecule_vibrations[i]["y"], molecule_vibrations[i]["z"])
-      atoms.add(atom)
-    }
-    atoms.up.set(0.0, 0.0, 1.0)
-    scene.add(atoms)
   }
 
   startAnimationLoop = () => {
