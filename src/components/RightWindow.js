@@ -3,14 +3,18 @@ import mol_data from "./mol_data.js"
 
 function DiagramWindow (props) {
     var img_path = ("./assets/diagrams/" + props.diagram + "/" + props.molecule + "_" + props.diagram + ".png")
+    if (props.diagram === "mo") {
+        img_path = img_path.slice(0,-3) + "svg"
+    }
     const num_mos = mol_data[props.molecule]["number_mos"]
     const normal_modes = mol_data[props.molecule]["normal_modes"]
+    const mode_active = mol_data[props.molecule]["mode_active"]
 
     //This if staetment is true if the MO radio button is selected
     if (props.tab === "diagrams" & props.diagram === "mo") {
         //This if statement checks the annotated check box and updates the filepath to the MO if it is checked.
         if (props.mo_annotated === true) {
-            img_path = img_path.slice(0, -4) + "_annotated.png";
+            img_path = img_path.slice(0, -4) + "_annotated.svg";
         }
         //This function is used to make the number of MOs that appear in the dropdown respond to the value in mol_data.js
         //It takes an integer as a number and return a list of JSX options.
@@ -46,9 +50,15 @@ function DiagramWindow (props) {
     } else if (props.tab === "diagrams" & props.diagram === "ir") {
         function option_generator(normal_modes) {
             let options = []
-            options.push(<option value = {"none"}> Normal Modes / cm-1</option>)
+            options.push(<option value = {"none"}> Normal Modes (cm-1)</option>)
             for (let i = 0; i < normal_modes.length; i++) {
-                options.push(<option value = {i+1}> {parseInt(i+1) + " (" + normal_modes[i] + ")"} </option>)
+                var activity;
+                if (mode_active[i] === true) {
+                    activity = "Active"
+                } else {
+                    activity = "Inactive"
+                }
+                options.push(<option value = {i+1}> {parseInt(i+1) + " (" + normal_modes[i] + ") | " + activity} </option>)
             }
             return (options)
         }
