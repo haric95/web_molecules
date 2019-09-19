@@ -31,12 +31,6 @@ This project was bootstrapped using Create-React-App
 
 * **Hari Chauhan** - *Initial work*
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
 ## Acknowledgments
 
 * Thanks to Ethan Vicars for helping with data collection and processing.
