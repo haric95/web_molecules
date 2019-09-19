@@ -72,6 +72,7 @@ class ThreeD extends React.Component {
     controls = new OrbitControls(this.camera, this.canvas)
     controls.minDistance = 8
     controls.maxDistance = 20
+    controls.enablePan = false;
     this.canvas.appendChild(this.renderer.domElement); // mount using React ref
     light_holder = new THREE.Group();
     lights = [];
@@ -108,7 +109,7 @@ class ThreeD extends React.Component {
     const path_mo = this.props.molecule + "_mo" + this.props.mo_no 
     const mtlLoader = new MTLLoader();
     mtlLoader.setPath("./assets/mos/");
-    mtlLoader.setMaterialOptions( { side: THREE.BackSide} );
+    mtlLoader.setMaterialOptions( { side: THREE.DoubleSide} );
     mtlLoader.load("mo.mtl", function(materials){
       materials.preload();
       var objLoader = new OBJLoader();
