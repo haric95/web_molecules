@@ -2,6 +2,9 @@
 
 Website supporting learning in physical chemistry.
 
+A temporary build of the website is hosted here: https://eager-torvalds-6fb1b2.netlify.com/
+Thus far, H2O and NH3 have been populated with data.
+
 ## Getting Started
 
 You will need to install node.js on your system and run:
