@@ -7,7 +7,7 @@
     "js-file-download": "^0.4.8",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1",
+    "react-scripts": "5.0.1",
     "three": "^0.106.2",
     "three-mtl-loader": "^1.0.2",
     "three-obj-loader-es6-module": "^1.0.1",
